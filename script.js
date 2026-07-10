@@ -21,7 +21,7 @@ query_form.addEventListener("submit", async (event) => {
     if (data["prompt"].trim() == "") {
         return;
     }
-    new_message = document.createElement("p");
+    var new_message = document.createElement("p");
     new_message.style.textAlign = "right";
     new_message.textContent = data["prompt"];
     chat_window.appendChild(new_message);
@@ -47,10 +47,11 @@ query_form.addEventListener("submit", async (event) => {
             const response_json = await response.json();
             new_message = document.createElement("p");
             new_message.style.textAlign = "left";
-            response_text = response_json["chat"].at(-1)["content"];
+            const response_text = response_json["chat"].at(-1)["content"] + " (" + response_json["chunks_used"] + " chunks used)";
             chat.push({"role": "assistant", "content": response_text});
             new_message.textContent = response_text;
             chat_window.appendChild(new_message);
+            chat_window.scrollTop = chat_window.scrollHeight;
         }
     } catch (error) {
         console.error(error);
