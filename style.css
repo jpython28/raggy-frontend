@@ -1,0 +1,14 @@
+body {
+    background-color: coral; 
+    font-family:'Segoe UI';
+}
+h1   {
+    text-align: center;
+}
+button {
+    border-radius: 10%;
+}
+input {
+    font-family: "Segoe UI";
+    font-size: 16px;
+}

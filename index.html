@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Raggy - Personal RAG Database</title>
+        <link rel="icon" type="image/x-icon" href="favicon.ico">
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <h1>RAGGY</h1>
+        <hr>
+        <div id="chat-window" style="background-color:darksalmon; height: 100px; overflow-y: scroll;">
+        </div>
+        <form id="query-form">
+            <input type="text" id="prompt" name="prompt" required>
+            <button type="submit">
+                <img src="send_button.png" alt="" width="16" height="16" style="align-self: center;">
+            </button>
+        </form>
+        <hr>
+        <div id="upload-window">
+            <form id="upload-form">
+                <input type="file" accept=".txt" id="file-input" required>
+                <button type="upload">
+                    <img src="upload_button.png" alt="" width="16" height="16" style="align-self: center;">
+                </button>
+            </form>
+            <p id="upload-status">
+            </p>
+        </div>
+        <b>API Key</b> <input type="password" id="api-key"><span id="api-key-status"></span>
+        <script src="script.js"></script>
+    </body>
+</html>
