@@ -1,3 +1,4 @@
+
 const query_url = "https://raggy-yls2.onrender.com/query";
 const upload_url = "https://raggy-yls2.onrender.com/documents";
 
@@ -49,7 +50,7 @@ query_form.addEventListener("submit", async (event) => {
             new_message.style.textAlign = "left";
             const response_text = response_json["chat"].at(-1)["content"] + " (" + response_json["chunks_used"] + " chunks used)";
             chat.push({"role": "assistant", "content": response_text});
-            new_message.textContent = response_text;
+            new_message.innerHTML = marked.parse(response_text);
             chat_window.appendChild(new_message);
             chat_window.scrollTop = chat_window.scrollHeight;
         }
