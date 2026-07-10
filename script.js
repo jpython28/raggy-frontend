@@ -27,6 +27,7 @@ query_form.addEventListener("submit", async (event) => {
     new_message.textContent = data["prompt"];
     chat_window.appendChild(new_message);
     chat.push({"role": "user", "content": data["prompt"]});
+    chat_window.scrollTop = chat_window.scrollHeight;
     try {
         const response = await fetch(query_url, 
             {
@@ -48,9 +49,9 @@ query_form.addEventListener("submit", async (event) => {
             const response_json = await response.json();
             new_message = document.createElement("p");
             new_message.style.textAlign = "left";
-            const response_text = response_json["chat"].at(-1)["content"] + " (" + response_json["chunks_used"] + " chunks used)";
+            const response_text = response_json["chat"].at(-1)["content"];
             chat.push({"role": "assistant", "content": response_text});
-            new_message.innerHTML = marked.parse(response_text);
+            new_message.innerHTML = marked.parse(response_text + " (" + response_json["chunks_used"] + " chunks used)");
             chat_window.appendChild(new_message);
             chat_window.scrollTop = chat_window.scrollHeight;
         }
