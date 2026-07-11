@@ -15,16 +15,16 @@
         </div>
         <form id="query-form">
             <input type="text" id="prompt" name="prompt" autocomplete="off" class="text-input" required>
-            <button type="submit">Send</button>
+            <button type="submit" id="send-button">Send</button>
         </form>
+        <p id="query-status"></p>
         <hr>
         <div id="upload-window">
             <form id="upload-form">
                 <input type="file" accept=".txt" id="file-input" required>
-                <button type="submit">Upload</button>
+                <button type="submit" id="upload-button">Upload</button>
             </form>
-            <p id="upload-status">
-            </p>
+            <p id="upload-status"></p>
         </div>
         <b>API Key</b> <input type="password" id="api-key" class="text-input"><span id="api-key-status"></span>
         <script src="script.js"></script>
