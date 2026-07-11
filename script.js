@@ -22,11 +22,15 @@ query_form.addEventListener("submit", async (event) => {
     if (data["prompt"].trim() == "") {
         return;
     }
-    var new_message = document.createElement("p");
-    new_message.style.textAlign = "right";
-    new_message.textContent = data["prompt"];
-    chat_window.appendChild(new_message);
+    var user_message = document.createElement("p");
+    user_message.className = "message message-user";
+    user_message.textContent = data["prompt"];
+    chat_window.appendChild(user_message);
     chat.push({"role": "user", "content": data["prompt"]});
+    var asst_message = document.createElement("p");
+    asst_message.className = "message message-asst";
+    asst_message.textContent = "...";
+    chat_window.appendChild(asst_message);
     chat_window.scrollTop = chat_window.scrollHeight;
     try {
         const response = await fetch(query_url, 
@@ -47,13 +51,13 @@ query_form.addEventListener("submit", async (event) => {
         } else {
             api_key_status.textContent = "\u2705";
             const response_json = await response.json();
-            new_message = document.createElement("p");
-            new_message.style.textAlign = "left";
             const response_text = response_json["chat"].at(-1)["content"];
             chat.push({"role": "assistant", "content": response_text});
-            new_message.innerHTML = marked.parse(response_text + " (" + response_json["chunks_used"] + " chunks used)");
-            chat_window.appendChild(new_message);
-            chat_window.scrollTop = chat_window.scrollHeight;
+            asst_message.innerHTML = marked.parseInline(response_text);
+            var chunks_used_message = document.createElement("p");
+            chunks_used_message.className = "message message-asst chunks-used";
+            chunks_used_message.textContent = response_json["chunks_used"] + " chunks retrieved";
+            chat_window.appendChild(chunks_used_message);
         }
     } catch (error) {
         console.error(error);

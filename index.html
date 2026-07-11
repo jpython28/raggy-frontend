@@ -1,34 +1,32 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Raggy - Personal RAG Database</title>
-        <link rel="icon" type="image/x-icon" href="favicon.ico">
+        <title>RAGgy - Personal RAG Database</title>
+        <link rel="icon" type="image/png" href="icon.png">
         <link rel="stylesheet" href="style.css">
         <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     </head>
     <body>
-        <h1>RAGGY</h1>
+        <div class="title-div">
+            <img src="icon.png" width="32px" height="32px"> <span class="title">RAGgy</span>
+        </div>
         <hr>
-        <div id="chat-window" style="background-color:darksalmon; height: 200px; overflow-y: scroll;">
+        <div id="chat-window" >
         </div>
         <form id="query-form">
-            <input type="text" id="prompt" name="prompt" required>
-            <button type="submit">
-                <img src="send_button.png" alt="" width="16" height="16" style="align-self: center;">
-            </button>
+            <input type="text" id="prompt" name="prompt" autocomplete="off" class="text-input" required>
+            <button type="submit">Send</button>
         </form>
         <hr>
         <div id="upload-window">
             <form id="upload-form">
                 <input type="file" accept=".txt" id="file-input" required>
-                <button type="submit">
-                    <img src="upload_button.png" alt="" width="16" height="16" style="align-self: center;">
-                </button>
+                <button type="submit">Upload</button>
             </form>
             <p id="upload-status">
             </p>
         </div>
-        <b>API Key</b> <input type="password" id="api-key"><span id="api-key-status"></span>
+        <b>API Key</b> <input type="password" id="api-key" class="text-input"><span id="api-key-status"></span>
         <script src="script.js"></script>
     </body>
 </html>
