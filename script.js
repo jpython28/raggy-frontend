@@ -72,11 +72,13 @@ query_form.addEventListener("submit", async (event) => {
             asst_message.innerHTML = marked.parseInline(response_text);
             var chunks_used_message = document.createElement("p");
             chunks_used_message.className = "message message-asst chunks-used";
-            chunks_used_message.textContent = response_json["chunks_used"] + " chunks retrieved";
+            chunks_used_message.textContent = data["chunks_used"] + " chunks retrieved";
             chat_window.appendChild(chunks_used_message);
         }
     } catch (error) {
         console.log(error);
+        query_status.textContent = "Error: " + error;
+        delete_last_message();
     }
     send_button.disabled = false;
 });
@@ -113,6 +115,7 @@ upload_form.addEventListener("submit", async (event) => {
         }
     } catch (error) {
         console.log(error);
+        upload_status.textContent = "Error uploading file: " + error;
     }
     upload_button.disabled = false;
 });
